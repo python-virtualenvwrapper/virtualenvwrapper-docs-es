@@ -4,92 +4,63 @@
 virtualenvwrapper
 #################
 
-virtualenvwrapper is a set of extensions to Ian Bicking's `virtualenv
-<http://pypi.python.org/pypi/virtualenv>`_ tool.  The extensions include
-wrappers for creating and deleting virtual environments and otherwise
-managing your development workflow, making it easier to work on more
-than one project at a time without introducing conflicts in their
-dependencies.
+virtualenvwrapper es un conjunto de extensiones de la herramienta de Ian
+Bicking `virtualenv <http://pypi.python.org/pypi/virtualenv>`_. Las extensiones
+incluyen funciones para la creación y eliminación de entornos virtuales y por otro
+lado administración de tu rutina de desarrollo, haciendo fácil trabajar en más
+de un proyecto al mismo tiempo sin introducir conflictos entre sus dependencias.
 
-========
-Features
-========
-
-1.  Organizes all of your virtual environments in one place.
-
-2.  Wrappers for creating, copying and deleting environments, including
-    user-configurable hooks.
-
-3.  Use a single command to switch between environments.
-
-4.  Tab completion for commands that take a virtual environment as
-    argument.
-
-5. User-configurable hooks for all operations.
-
-6. Plugin system for more creating sharable extensions.
-
-Rich Leland has created a short `screencast
-<http://mathematism.com/2009/jul/30/presentation-pip-and-virtualenv/>`__
-showing off the features of virtualenvwrapper.
-
-============
-Installation
-============
-
-See the `project documentation
-<http://www.doughellmann.com/docs/virtualenvwrapper/>`__ for
-installation and setup instructions.
-
-Supported Shells
-================
-
-virtualenvwrapper is a set of shell *functions* defined in Bourne
-shell compatible syntax.  It is tested under `bash`, `ksh`, and `zsh`.
-It may work with other shells, so if you find that it does work with a
-shell not listed here please let me know.  If you can modify it to
-work with another shell, without completely rewriting it, send a pull
-request through the bitbucket project page.  If you write a clone to
-work with an incompatible shell, let me know and I will link to it
-from this page.
-
-Python Versions
+===============
+Características
 ===============
 
-virtualenvwrapper is tested under Python 2.6, 2.7 and 3.2.
+1. Organiza todos tus entornos virtuales en un sólo lugar.
 
-=======
-Support
-=======
+2. Funciones para administrar tus entornos virtuales (crear, eliminar, copiar).
 
-Join the `virtualenvwrapper Google Group
-<http://groups.google.com/group/virtualenvwrapper/>`__ to discuss
-issues and features.  
+3. Usa un sólo comando para cambiar entre los entornos.
 
-Report bugs via the `bug tracker on BitBucket
-<http://bitbucket.org/dhellmann/virtualenvwrapper/>`__.
+4. Completa con Tab los comandos que toman un entorno virtual como argumento.
 
-Shell Aliases
-=============
+5. Ganchos configurables para todas las operaciones.
 
-Since virtualenvwrapper is largely a shell script, it uses shell
-commands for a lot of its actions.  If your environment makes heavy
-use of shell aliases or other customizations, you may encounter
-issues.  Before reporting bugs in the bug tracker, please test
-*without* your aliases enabled.  If you can identify the alias causing
-the problem, that will help make virtualenvwrapper more robust.
+6. Sistema de plugins para la creación de extensiones compartibles.
 
-==========
-Change Log
-==========
+Rich Leland ha grabado un pequeño `screencast
+<http://mathematism.com/2009/jul/30/presentation-pip-and-virtualenv/>`__
+mostrando las características de virtualenvwrapper.
 
-The `release history`_ is part of the project documentation.
 
-.. _release history: http://www.doughellmann.com/docs/virtualenvwrapper/history.html
+===========
+Instalación
+===========
 
-=======
-License
-=======
+Ve a la `documentación del proyecto <http://www.doughellmann.com/docs/virtualenvwrapper/>`__
+para las instrucciones de instalación y configuración.
+
+Actualizar desde 1.x
+====================
+
+El script de shell que contiene las funciones ha sido renombrado en la serie
+2.x para reflejar el hecho de que otros shells, además de bash, son soportados. En
+tu archivo de inicio del shell, cambia ``source
+/usr/local/bin/virtualenvwrapper_bashrc`` por ``source
+/usr/local/bin/virtualenvwrapper.sh``.
+
+==============
+Contribuciones
+==============
+
+Antes de contribuir con nuevas características al *core* de virtualenvwrapper,
+por favor considera, en vez, si no debe ser implementada como una extensión.
+
+Ve a la `documentación para desarrolladores 
+<http://www.doughellmann.com/docs/virtualenvwrapper/developers.html>`__
+por trucos sobre parches.
+
+========
+Licencia
+========
 
 Copyright Doug Hellmann, All Rights Reserved
 
@@ -108,3 +79,5 @@ CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
 USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
+
+.. _BitBucket: http://bitbucket.org/dhellmann/virtualenvwrapper/overview/
