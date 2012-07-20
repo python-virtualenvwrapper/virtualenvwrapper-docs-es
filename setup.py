@@ -9,12 +9,7 @@ VERSION = '3.5'
 import distribute_setup
 distribute_setup.use_setuptools()
 
-from setuptools import setup, find_packages
-
-from distutils.util import convert_path
-from fnmatch import fnmatchcase
-import os
-import sys
+from setuptools import setup
 
 try:
     long_description = open('README.txt', 'rt').read()
