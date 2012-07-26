@@ -84,7 +84,7 @@ Ejecutar automáticamente workon cuando se ingresa a un directorio
 =================================================================
 
 `Justin Lily escribió un post
-<http://justinlilly.com/blog/2009/mar/28/virtualenv-wrapper-helper/>`__
+<http://justinlilly.com/python/virtualenv_wrapper_helper.html>`__
 sobre algún código que agrego a su entorno de shell para buscar en el directorio
 cada vez que se ejecuta ``cd``. Si este encuentra un archivo llamado ``.venv``,
 activa el entorno nombrado dentro. Una vez que se deja el directorio, el

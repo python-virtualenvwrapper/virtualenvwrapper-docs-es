@@ -23,11 +23,11 @@ Crea un nuevo entorno, dentro de WORKON_HOME.
 
 Sintaxis::
 
-    mkvirtualenv [options] ENVNAME
+    mkvirtualenv [-a project_path] [-i package] [-r requirements_file] [virtualenv options] ENVNAME
 
-Todas las opciones de línea de comandos son pasados directamente a
-``virtualenv``. El nuevo entorno es automáticamente activado luego de su
-inicialización.
+Todas las opciones de línea de comandos excepto ``-a``, ``-i``,
+``-r``, y ``-h`` son pasados directamente a ``virtualenv``. El nuevo
+entorno es automáticamente activado luego de su inicialización.
 
 ::
 
@@ -42,10 +42,88 @@ inicialización.
     mynewenv
     (mynewenv)$ 
 
+La opción ``-a`` puede ser usada para asociar un directorio de
+proyecto existente con el nuevo entorno.
+
+La opción ``-i`` puede ser usada para instalar uno o más paquetes
+(repitiendo la opción) luego que el entorno sea creado.
+
+La opción ``-r`` puede ser usada para especificar un archivo de texto
+con la lista de paquetes a ser instalados. El valor del argumento es
+pasado a ``pip -r`` para que sean instalados.
+
 .. seealso::
 
    * :ref:`scripts-premkvirtualenv`
    * :ref:`scripts-postmkvirtualenv`
+   * `requirements file format`_
+
+.. _requirements file format: http://www.pip-installer.org/en/latest/requirement-format.html
+
+.. _command-mktmpenv:
+
+mktmpenv
+--------
+
+Crea un nuevo virtualenv en el directorio ``WORKON_HOME``.
+
+Sintaxis::
+
+    mktmpenv [VIRTUALENV_OPTIONS]
+
+Un nombre único es generado para el virtualenv.
+
+::
+
+    $ mktmpenv
+    Using real prefix '/Library/Frameworks/Python.framework/Versions/2.7'
+    New python executable in 1e513ac6-616e-4d56-9aa5-9d0a3b305e20/bin/python
+    Overwriting 1e513ac6-616e-4d56-9aa5-9d0a3b305e20/lib/python2.7/distutils/__init__.py 
+    with new content
+    Installing distribute...............................................
+    ....................................................................
+    .................................................................done.
+    This is a temporary environment. It will be deleted when deactivated.
+    (1e513ac6-616e-4d56-9aa5-9d0a3b305e20) $
+
+.. _command-lsvirtualenv:
+
+lsvirtualenv
+------------
+
+Lista todos los entornos.
+
+Sintaxis::
+
+    lsvirtualenv [-b] [-l] [-h]
+
+-b
+  Modo breve, deshabilita la salida verbosa.
+-l
+  Modo largo, habilita la salida verbosa.  Por defecto.
+-h
+  Imprime la ayuda de lsvirtualenv.
+
+.. seealso::
+
+   * :ref:`scripts-get_env_details`
+
+.. _command-showvirtualenv:
+
+showvirtualenv
+--------------
+
+Muestra los detalles de un virtualenv.
+
+Syntax::
+
+    showvirtualenv [env]
+
+.. seealso::
+
+   * :ref:`scripts-get_env_details`
+
+.. _command-rmvirtualenv:
 
 rmvirtualenv
 ------------
@@ -75,16 +153,21 @@ Debes usar :ref:`command-deactivate` antes de eliminar el entorno actual.
 cpvirtualenv
 ------------
 
-Duplica un entorno, dentro de WORKON_HOME.
+Duplica un entorno virtualenv existente. El entorno de origen puede
+ser un entorno manejado con virtualenvwrapper o uno externo creado en
+otro lugar.
 
 Sintaxis::
 
-    cpvirtualenv ENVNAME TARGETENVNAME
+    cpvirtualenv ENVNAME [TARGETENVNAME]
 
 .. note::
 
-   El entorno creado por la operación de copia es hecho `reubicable
-   <http://virtualenv.openplans.org/#making-environments-relocatable>`__.
+   El nombre de entorno de destino es necesario para duplicar un
+   entorno existente en WORKON_HOME. Sin embargo, éste puede ser
+   omitido para importar entornos externos. Si se omite, el nuevo
+   entorno tendrá el mismo nombre que el original.
+
 
 ::
 
@@ -118,6 +201,8 @@ Sintaxis::
 ==============================
 Controlar los entornos activos
 ==============================
+
+.. _command-workon:
 
 workon
 ------
@@ -325,3 +410,129 @@ Los nombres de los directorios son agregados a un archivo llamado
 entorno.
 
 *Basado en una contribución de James Bennett y Jannis Leidel.*
+
+.. _command-toggleglobalsitepackages:
+
+toggleglobalsitepackages
+------------------------
+
+Controla si el virtualenv activo tendrá acceso a los paquetes en el
+directorio ``site-packages`` global de Python.
+
+Sintaxis::
+
+    toggleglobalsitepackages [-q]
+
+Muestra el nuevo estado del virtualenv. Usa la opción ``-q`` para
+apagar la salida por pantalla.
+
+::
+
+    $ mkvirtualenv env1
+    New python executable in env1/bin/python
+    Installing distribute.............................................
+    ..................................................................
+    ..................................................................
+    done.
+    (env1)$ toggleglobalsitepackages
+    Disabled global site-packages
+    (env1)$ toggleglobalsitepackages
+    Enabled global site-packages
+    (env1)$ toggleglobalsitepackages -q
+    (env1)$
+
+=========================================
+Administración de directorios de proyecto
+=========================================
+
+.. seealso::
+
+   :ref:`project-management`
+
+.. _command-mkproject:
+
+mkproject
+---------
+
+Crea un nuevo virtualenv en WORKON_HOME y el directorio del proyecto
+en PROJECT_HOME.
+
+Sintaxis::
+
+    mkproject [-t template] [virtualenv_options] ENVNAME
+
+La opción template puede repetirse varias veces para utilizar
+diferentes templates en la creación del proyecto. Los templates son
+aplicados en el orden mencionados en la línea de comandos. Todas las
+otras opciones son pasadas a ``mkvirtualenv`` para crear un virtualenv
+con el mismo nombre que el proyecto.
+
+::
+
+    $ mkproject myproj
+    New python executable in myproj/bin/python
+    Installing distribute.............................................
+    ..................................................................
+    ..................................................................
+    done.
+    Creating /Users/dhellmann/Devel/myproj
+    (myproj)$ pwd
+    /Users/dhellmann/Devel/myproj
+    (myproj)$ echo $VIRTUAL_ENV
+    /Users/dhellmann/Envs/myproj
+    (myproj)$ 
+
+.. seealso::
+
+  * :ref:`scripts-premkproject`
+  * :ref:`scripts-postmkproject`
+
+setvirtualenvproject
+--------------------
+
+Asocia un virtualenv existente a un proyecto existente.
+
+Sintaxis::
+
+  setvirtualenvproject [virtualenv_path project_path]
+
+Los argumentos de ``setvirtualenvproject`` son paths absolutos hacia el
+virtualenv y el directorio del proyecto. Una asociación es hecha para
+que cuando ``workon`` active el virtualenv también active el proyecto.
+
+::
+
+    $ mkproject myproj
+    New python executable in myproj/bin/python
+    Installing distribute.............................................
+    ..................................................................
+    ..................................................................
+    done.
+    Creating /Users/dhellmann/Devel/myproj
+    (myproj)$ mkvirtualenv myproj_new_libs
+    New python executable in myproj/bin/python
+    Installing distribute.............................................
+    ..................................................................
+    ..................................................................
+    done.
+    Creating /Users/dhellmann/Devel/myproj
+    (myproj_new_libs)$ setvirtualenvproject $VIRTUAL_ENV $(pwd)
+
+Cuando ningún argumento es pasado, se asume el virtualenv y el
+directorio activo.
+
+Cualquier número de virtualenvs puede referirse al mismo directorio de
+proyecto, haciendo fácil cambiar entre versiones de Python o otras
+dependencias necesarias para testing.
+
+.. _command-cdproject:
+
+cdproject
+---------
+
+Cambia el directorio de trabajo actual al especificado como directorio
+del proyecto para el virtualenv activo.
+
+Sintaxis::
+
+  cdproject

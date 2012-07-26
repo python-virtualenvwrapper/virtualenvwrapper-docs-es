@@ -294,6 +294,17 @@ indica si llama a la extensión antes o después de un evento. El sufijo ``_sour
 es agregado para las extensiones que retornan código shell en vez de tomar una
 acción directamente (ver :ref:`plugins-user-env`).
 
+.. _plugins-get_env_details:
+
+get_env_details
+===============
+
+Los ganchos ``virtualenvwrapper.get_env_details`` son ejecutados
+cuando ``workon`` es ejecutado sin argumentos y una lista de entornos
+virtuales es impresa en pantalla. El gancho es ejecutado una vez para
+cada entorno, luego de que el nombre sea impreso, y puede ser
+utilizado para mostrar información adicional sobre ese entorno.
+
 .. _plugins-initialize:
 
 initialize

@@ -172,6 +172,7 @@ Detalles
    install
    command_ref
    hooks
+   projects
    tips
    developers
    extensions
@@ -194,6 +195,36 @@ Completely Different
 Rich Leland ha grabado un pequeño `screencast
 <http://mathematism.com/2009/jul/30/presentation-pip-and-virtualenv/>`__
 mostrando las características de virtualenvwrapper.
+
+Manuel Kaufmann ha `traducido esta documentación al Español
+<http://virtualenvwrapper-docs-es.readthedocs.org/en/latest/>`__.
+
+Tetsuya Morimoto ha `traducido esta documentación al Japonés
+<http://virtualenvwrapper-docs-ja.readthedocs.org/en/latest/>`__.
+
+=======
+Soporte
+=======
+
+Únete al `Grupo de Google de virtualenvwrapper
+<http://groups.google.com/group/virtualenvwrapper/>`__ para discutir
+problemas y característas.
+
+Reporta problemas en el `bug tracker de BitBucket
+<http://bitbucket.org/dhellmann/virtualenvwrapper/>`__.
+
+Alias de shell
+==============
+
+Debido a que virtualenvwrapper es en su mayoría un script de shell,
+éste usa comandos de shell para muchas de sus acciones. Si tu entorno
+hace uso extendido de alias o otro tipo de customizaciones, quizás
+encuentres algunos problemas. Antes de reportar bugs en el bug
+tracker, por favor prueba *sin* tus alias habilitados. Si puedes
+identificar el alias que causa el problema, ayudará a hacer a
+virtualenv más robusto.
+
+.. _license:
 
 ========
 Licencia
