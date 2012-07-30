@@ -63,7 +63,58 @@ La versión de publicación de la documentación termina dentro de
 Ejecutar tests
 ==============
 
-La suite de test para virtualenvwrapper usa `shunit2
-<http://shunit2.googlecode.com/>`_. Para ejecutar los tests en bash, sh, y zsh,
-usa ``make test``.
+La suite de test de virtualenvwrapper usa shunit2_ y tox_. El código
+de shunit2 está incluído en el directorio ``tests``, pero tox debe ser
+instalado aparte (``pip install tox``).
 
+Para ejecutar los test en bash, zsh, ksh para Python 2.4 a 2.7,
+ejecuta ``tox`` en la cima directorio del repositorio hg.
+
+Para ejecutar un test de un script individual, usa un comando como::
+
+  $ tox tests/test_cd.sh
+
+Para ejecutar los tests bajo un sola versión de Python, especifica el
+entorno apropiado cuando ejecutes tox::
+
+  $ tox -e py27
+
+Combina los dos modos para ejecutar los tests específicos con una sóla
+versión de Python::
+
+  $ tox -e py27 tests/test_cd.sh
+
+Agrega nuevos tests modificando un archivo existente o creando un
+nuevo script en el directorio ``tests``.
+
+.. _shunit2: http://shunit2.googlecode.com/
+
+.. _tox: http://codespeak.net/tox
+
+.. _developer-templates:
+
+Crear un Nuevo Template
+=======================
+
+El template virtualenvwrapper.project funciona como un `plugin de
+virtualenvwrapper
+<http://www.doughellmann.com/docs/virtualenvwrapper/plugins.html>`__. El
+nombre del grupo del *punto de entrada* es
+``virtualenvwrapper.project.template``. Configura tu punto de entrada
+para apuntar a la función que se **ejecutará** (ganchos incluídos no
+están soportados para los templates).
+
+El argumento para la función del template es el nombre del proyecto
+que está siendo creado. El directorio de trabajo actual es el
+directorio creado para hostear los archivos del proyecto
+(``$PROJECT_HOME/$envname``).
+
+Texto de ayuda
+--------------
+
+Una diferencia entre los templates de proyectos y otras extensiones de
+virtualenvwrapper es que sólo los templates especificados por el
+usuario son ejecutados. El comando ``mkproject`` tiene una opción de
+ayuda para darle al usuario una lista de templates disponibles. Los
+nombres son tomados desde los nombres de puntos de entrada registrados
+y las descriptiones de los docstrings de las funciones del template.
