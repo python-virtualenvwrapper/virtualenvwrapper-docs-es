@@ -23,6 +23,7 @@ Necesitas los siguientes paquetes para construir la documentación:
 
 - Sphinx
 - docutils
+- sphinxcontrib-bitbucket
 
 Una vez que todas las herramientas están instaladas dentro de un virtualenv
 usando pip, ejecuta ``make html`` para generar la versión de HTML de la

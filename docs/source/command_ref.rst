@@ -58,7 +58,7 @@ pasado a ``pip -r`` para que sean instalados.
    * :ref:`scripts-postmkvirtualenv`
    * `requirements file format`_
 
-.. _requirements file format: http://www.pip-installer.org/en/latest/requirement-format.html
+.. _requirements file format: http://www.pip-installer.org/en/latest/requirements.html
 
 .. _command-mktmpenv:
 
@@ -157,6 +157,13 @@ Duplica un entorno virtualenv existente. El entorno de origen puede
 ser un entorno manejado con virtualenvwrapper o uno externo creado en
 otro lugar.
 
+.. warning::
+
+   Copiar un entorno virtual no está del todo soportado. Cada entorno
+   virtual tiene información sobre los paths hardcodeado dentro de él,
+   y quizás el código copiado no sepa actualizar un archivo en particular.
+   **Usar con cuidado.**
+
 Sintaxis::
 
     cpvirtualenv ENVNAME [TARGETENVNAME]
@@ -197,6 +204,28 @@ Sintaxis::
    * :ref:`scripts-postcpvirtualenv`
    * :ref:`scripts-premkvirtualenv`
    * :ref:`scripts-postmkvirtualenv`
+
+.. _command-allvirtualenv:
+
+allvirtualenv
+-------------
+
+Ejecuta un comando dentro de todos los entornos virtuales bajo WORKON_HOME.
+
+
+Sintaxis::
+
+    allvirtualenv command with arguments
+
+    Cada entorno virtual es activado, ejecutando los ganchos de activación,
+    el directorio de trabajo actual es cambiado al entorno virtual activado
+    y el comando es ejecutado. Los comandos no pueden modificar el estado del
+    shell actual, pero pueden modificar el entorno virtual.
+
+    ::
+
+      $ allvirtualenv pip install -U pip
+
 
 ==============================
 Controlar los entornos activos
@@ -394,7 +423,7 @@ Sintaxis::
     add2virtualenv directory1 directory2 ...
 
 A veces esto es útli para compartir paquetes instalados que no están en el
-directorio ``site-pacakges`` del sistema y no deben ser instalados en cada
+directorio ``site-packages`` del sistema y no deben ser instalados en cada
 entorno virtual. Una posible solución es crear enlaces simbólicos (*symlinks*)
 hacia el código dentro del directorio ``site-packages`` del entorno, pero
 también es fácil agregar a la variable PYTHONPATH directorios extras que están
@@ -406,7 +435,7 @@ incluidos en los archivos ``.pth`` dentro de ``site-packages`` usando ``add2virt
 4. Un mensaje de uso y una lista de las rutas "extras" actuales es impreso.
 
 Los nombres de los directorios son agregados a un archivo llamado
-``virtualenv_path_extensions.pth`` dentro del directorio site-packages de este
+``_virtualenv_path_extensions.pth`` dentro del directorio site-packages de este
 entorno.
 
 *Basado en una contribución de James Bennett y Jannis Leidel.*
@@ -459,7 +488,10 @@ en PROJECT_HOME.
 
 Sintaxis::
 
-    mkproject [-t template] [virtualenv_options] ENVNAME
+    mkproject [-f|--force] [-t template] [virtualenv_options] ENVNAME
+
+-f, --force    Crea un entorno virtual incluso si el directorio del proyecto
+               ya existe
 
 La opción template puede repetirse varias veces para utilizar
 diferentes templates en la creación del proyecto. Los templates son
@@ -486,6 +518,8 @@ con el mismo nombre que el proyecto.
 
   * :ref:`scripts-premkproject`
   * :ref:`scripts-postmkproject`
+
+.. _command-setvirtualenvproject:
 
 setvirtualenvproject
 --------------------
@@ -521,7 +555,7 @@ que cuando ``workon`` active el virtualenv también active el proyecto.
 Cuando ningún argumento es pasado, se asume el virtualenv y el
 directorio activo.
 
-Cualquier número de virtualenvs puede referirse al mismo directorio de
+Cualquier número de entornos virtuales puede referirse al mismo directorio de
 proyecto, haciendo fácil cambiar entre versiones de Python o otras
 dependencias necesarias para testing.
 
@@ -536,3 +570,19 @@ del proyecto para el virtualenv activo.
 Sintaxis::
 
   cdproject
+
+===========================
+Manegar paquetes instalados
+===========================
+
+.. _command-wipeenv:
+
+wipeenv
+-------
+
+Elimina todos los paquetes de terceros instalados en el entorno virtual actual.
+
+Syntax::
+
+  wipeenv
+

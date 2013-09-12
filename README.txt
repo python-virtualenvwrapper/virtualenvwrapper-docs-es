@@ -10,6 +10,14 @@ incluyen funciones para la creación y eliminación de entornos virtuales y por 
 lado administración de tu rutina de desarrollo, haciendo fácil trabajar en más
 de un proyecto al mismo tiempo sin introducir conflictos entre sus dependencias.
 
+**Cuidado:** La version 4.x incluye algunos cambios incompatibles con
+extensiones para 3.x. Los módulos de python para extensiones ahora
+corre *siempre* con ``PWD=$WORKON_HOME`` (anteriormente el valor de PWD
+variaba dependiendo del gancho). La porción de *shell* de cualquier gancho
+(cualquiera incluído por el shell del usuario cuando el gancho es ejecutado)
+es todavía ejecutado in el mismo lugar que antes.
+
+
 ===============
 Características
 ===============
@@ -27,7 +35,7 @@ Características
 6. Sistema de plugins para la creación de extensiones compartibles.
 
 Rich Leland ha grabado un pequeño `screencast
-<http://mathematism.com/2009/jul/30/presentation-pip-and-virtualenv/>`__
+<http://mathematism.com/2009/07/30/presentation-pip-and-virtualenv/>`__
 mostrando las características de virtualenvwrapper.
 
 
@@ -38,25 +46,51 @@ Instalación
 Ve a la `documentación del proyecto <http://www.doughellmann.com/docs/virtualenvwrapper/>`__
 para las instrucciones de instalación y configuración.
 
-Actualizar desde 1.x
-====================
+Shells soportados
+=================
 
-El script de shell que contiene las funciones ha sido renombrado en la serie
-2.x para reflejar el hecho de que otros shells, además de bash, son soportados. En
-tu archivo de inicio del shell, cambia ``source
-/usr/local/bin/virtualenvwrapper_bashrc`` por ``source
-/usr/local/bin/virtualenvwrapper.sh``.
+virtualenvwrapper es un conjunto de *funciones* de shell definidas en sintaxis
+compatible con Bourne shell. Ha sido testeado bajo ``bash``, ``ksh`` y
+``zsh``. Quizás funcione con otros shells, así que si encuentras que funciona
+con otro shell que no esté listado aquí, por favor, házmelo saber. Si puedes
+modificarlo para que funcione con otro shell, sin re-escribirlo completamente,
+envíame a "pull request" a través de la página del proyecto de bitbucket. Si
+escribes un clon para que funcione con un shell incompatible, házmelo saber y
+voy a linkerlo desde ésta página.
 
+Versiones de Python
+===================
+
+virtualenvwrapper está probado bajo Python 2.6 - 3.3.
+
+=======
+Soporte
+=======
+
+Únete al grupo de `virtualenvwrapper en Google Groups
+<http://groups.google.com/group/virtualenvwrapper/>`__ para discutir
+problemas y mejoras.
+
+Reporta los bugs a través del `bug tracker de BitBucket
+<http://bitbucket.org/dhellmann/virtualenvwrapper/>`__
+
+Alias de shell
 ==============
-Contribuciones
-==============
 
-Antes de contribuir con nuevas características al *core* de virtualenvwrapper,
-por favor considera, en vez, si no debe ser implementada como una extensión.
+Debido a que virtualenvwrapper es mayormente un script de shell, éste usa
+comandos de shell para mucha de sus acciones. Si tu entorno hace mucho uso
+de alias de shell u otras personalizaciones, quizás encuentres algunos
+problemas. Antes de reportar bugs en el bug tracker, por favor prueba *sin*
+tus alias activadas. Si puedes identificar cuál es el alias que causa el
+problema, eso hará virtualenvwrapper más robusto.
 
-Ve a la `documentación para desarrolladores 
-<http://www.doughellmann.com/docs/virtualenvwrapper/developers.html>`__
-por trucos sobre parches.
+==========
+Change Log
+==========
+
+El `historial de versiones`_ es parte del proyecto de documentación.
+
+.. _release history: http://www.doughellmann.com/docs/virtualenvwrapper/history.html````
 
 ========
 Licencia

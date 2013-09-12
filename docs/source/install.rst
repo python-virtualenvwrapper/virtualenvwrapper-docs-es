@@ -78,7 +78,7 @@ virtualenvwrapper-powershell_ desde PyPI.
 Versiones de Python
 ===================
 
-virtualenvwrapper está testeado bajo Python 2.4 - 2.7.
+virtualenvwrapper está testeado bajo Python 2.6-3.3.
 
 .. _install-basic:
 
@@ -225,14 +225,14 @@ lugar por omisión es ``$WORKON_HOME``.
 
    * :ref:`scripts`
 
-.. _variable-VIRTUALENVWRAPPER_LOG_DIR:
+.. _variable-VIRTUALENVWRAPPER_LOG_FILE:
 
 Ubicación de los logs de los ganchos
 ------------------------------------
 
-La variable ``VIRTUALENVWRAPPER_LOG_DIR`` le indica a
+La variable ``VIRTUALENVWRAPPER_LOG_FILE`` le indica a
 virtualenvwrapper dónde deben ser escritos los logs para los scripts
-de gancho. El lugar por omisión es ``$WORKON_HOME``.
+de gancho. El lugar por omisión es no logear desde los ganchos.
 
 .. _variable-VIRTUALENVWRAPPER_VIRTUALENV:
 
