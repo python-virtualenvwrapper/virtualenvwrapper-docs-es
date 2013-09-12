@@ -13,7 +13,6 @@
 # serve to show the default.
 
 import datetime
-import subprocess
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -50,11 +49,7 @@ copyright = u'2009-%s, Doug Hellmann' % datetime.datetime.today().year
 # built documents.
 #
 # The short X.Y version.
-version = subprocess.check_output([
-    'sh', '-c',
-    'cd ../..; python setup.py --version',
-])
-version = version.strip()
+version = '4.1.1.20.gf0f0077'
 # The full version, including alpha/beta/rc tags.
 release = version
 
