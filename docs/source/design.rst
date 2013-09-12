@@ -2,7 +2,7 @@
  ¿Porqué virtualenvwrapper no está (mayormente) escrito en Python?
 ===================================================================
 
-Si miras al código fuente de virtualenvwrapper vas a ver que las partes más
+Si miras el código fuente de virtualenvwrapper vas a ver que las partes más
 interesante están implementadas como funciones de shell en
 ``virtualenvwrapper.sh``. El gancho de carga es una aplicación Python, pero no
 hace mucho para manejar los entornos virtuales. Algunas de las preguntas más
@@ -130,9 +130,9 @@ Implicancia para compatibilidad en diferentes shells
 
 Además de las peticiones por una implementación completa en Python, la otra
 petición más común es soportar shells adicionales. fish_ sale a menudo, debido
-a varios usuarios de Windows únicamente. Los :ref:`supporte-shells` todos
+a varios usuarios de Windows únicamente. Los :ref:`supported-shells` todos
 tienen en común suficiente sintaxis que hace que la misma implementación
-funcione para ellos. Soportar otros shells requriría re-escribir mucho, si no
+funcione para todos. Soportar otros shells requriría re-escribir mucho, si no
 todo, de la lógica usando syntaxis alternativa -- esos otros shells son
 básicamente diferentes lenguajes de programación. Hasta cierto punto he tratado
 con los ports alentando a otros desarolladores a manejarlos y luego intentantdo
