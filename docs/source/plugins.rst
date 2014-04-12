@@ -305,6 +305,17 @@ virtuales es impresa en pantalla. El gancho es ejecutado una vez para
 cada entorno, luego de que el nombre sea impreso, y puede ser
 utilizado para mostrar información adicional sobre ese entorno.
 
+.. _plugins-get_env_details:
+
+get_env_details
+===============
+
+The ``virtualenvwrapper.get_env_details`` hooks are run when
+``workon`` is run with no arguments and a list of the virtual
+environments is printed.  The hook is run once for each environment,
+after the name is printed, and can be used to show additional
+information about that environment.
+
 .. _plugins-initialize:
 
 initialize
